@@ -8,8 +8,7 @@ Python files can be run from an anaconda prompt with typing "python MSRESOLVE.py
 01 Has a typical analysis: Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out. Section 2.3 of the Quickstart explains what the various files are.
     ScaledConcentrations.csv  and the graphs directory are the main outputs.
     As noted in section, Section 3.1 , there is no 'detectable' Ethene or Ethyne (Actylene). There is only Ethane. The error bars are an important feature of MSRESOLVE
-    #TODO: Collected_Reference.csv  should be changed to Collected_Pulse.csv
-    
+
 02 is a learning opportunity for how to do a typical analysis.  This is following section 3.2 of the quick start guide.
    A dataset for an example analysis has already been made.
    Open the UserInput file. Normally, a user must edit this file.
