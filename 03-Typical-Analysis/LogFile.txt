@@ -1,24 +1,13 @@
-Sun Jul 24 01:35:09 2022
+Sun Aug  7 20:48:09 2022
 
 referenceFileName = ['ExtractedReferencePattern.csv'] 
 form  = ['xyyy'] 
 dataToAnalyzeFileName = Collected_GasPulse.csv 
-linearBaselineCorrectionSemiAutomatic = yes 
-selection = ['linear'] 
-massesToBackgroundCorrect = [12.0 13.0 14.0 15.0 16.0 17.0 21.0 22.0 24.0 25.0 26.0 27.0 28.0 29.0
- 30.0] 
-earlyBaselineTimes = [[850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870], [850, 870]] 
-lateBaselineTimes = [[1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070], [1050, 1070]] 
-applyReferenceMassFragmentsThresholds = yes 
-referenceMassFragmentFilterThreshold = [1.01, 1.01, 1.01] 
-referenceSignificantFragmentThresholds = [20.0, 20.0, 20.0] 
-answer = sls 
-uniqueOrCommon = unique 
-slsFinish = brute 
-objectiveFunctionType = ssr 
+solverChoice = inverse 
+distinguished = yes 
 scaleRawDataFactor  = 1.0 
 resolvedScaledConcentrationsOutputName  = ScaledConcentrations.tsv 
 concentrationsOutputName = ResolvedConcentrations.tsv 
 simulatedSignalsOutputName = SimulatedRawSignals.csv 
-Run Time 5.52834 seconds 
+Run Time 3.32569 seconds 
 ###################################################################### 
