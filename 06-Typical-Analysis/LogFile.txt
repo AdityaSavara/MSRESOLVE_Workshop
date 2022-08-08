@@ -1,0 +1,18 @@
+Sun Jul 24 01:36:26 2022
+
+referenceFileName = ['ExtractedReferencePattern.csv'] 
+form  = ['xyyy'] 
+dataToAnalyzeFileName = Collected_GasPulse.csv 
+applyReferenceMassFragmentsThresholds = yes 
+referenceMassFragmentFilterThreshold = [1.2, 1.2, 1.2] 
+referenceSignificantFragmentThresholds = [20.0, 20.0, 20.0] 
+answer = sls 
+uniqueOrCommon = unique 
+slsFinish = brute 
+objectiveFunctionType = ssr 
+scaleRawDataFactor  = 1.0 
+resolvedScaledConcentrationsOutputName  = ScaledConcentrations.tsv 
+concentrationsOutputName = ResolvedConcentrations.tsv 
+simulatedSignalsOutputName = SimulatedRawSignals.csv 
+Run Time 3.94727 seconds 
+###################################################################### 

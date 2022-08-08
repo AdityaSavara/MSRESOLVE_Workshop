@@ -13,10 +13,10 @@ if str(__name__) != "DefaultUserInput":
 
 #//Input Files//
 UserChoices['inputFiles'] = {} #initialize the inputFiles container
-UserChoices['inputFiles']['referenceFileNamesList'] = ['ExtractedReferencePattern.csv'] #enter the file name of the file containing reference information
-UserChoices['inputFiles']['referenceFormsList'] = 'xyyy' #form is either 'xyyy' or 'xyxy' (if using reference pattern time chooser enter as list with forms for each individual reference file ['xyyy','xyyy','xyyy'])
+UserChoices['inputFiles']['referencePatternsFileNamesList'] = ['ExtractedReferencePattern.csv'] #enter the file name of the file containing reference information. tsv is tab-separated, csv is comma separated. tsv supports commas in molecule names.
+UserChoices['inputFiles']['referencePatternsFormsList'] = 'xyyy' #form is either 'xyyy' or 'xyxy' (if using reference pattern time chooser enter as list with forms for each individual reference file ['xyyy','xyyy','xyyy'])
 UserChoices['inputFiles']['referencePatternTimeRanges'] = [] #Leave empty if not using reference pattern time chooser []
-UserChoices['inputFiles']['collectedFileName'] = 'Collected_GasPulse.csv'	#enter the file name with raw mass spectrometer data
+UserChoices['inputFiles']['dataToAnalyzeFileName'] = 'Collected_GasPulse.csv'	#enter the file name with raw mass spectrometer data
 
 UserChoices['inputFiles']['ionizationDataFileName'] = '181017ProvidedIonizationData.csv' #the name of the file containing the ionization data
 
@@ -31,7 +31,7 @@ UserChoices['iterativeAnalysis']['TotalConcentrationsOutputName'] = 'TotalConcen
 UserChoices['iterativeAnalysis']['iterationSuffix'] = ''
 UserChoices['iterativeAnalysis']['unusedMolecules'] =''
 UserChoices['iterativeAnalysis']['oldReferenceFileName'] = []
-UserChoices['iterativeAnalysis']['oldCollectedFileName'] ='' 
+UserChoices['iterativeAnalysis']['oldDataToAnalyzeFileName'] ='' 
 UserChoices['iterativeAnalysis']['nextRefFileName'] = []
 UserChoices['iterativeAnalysis']['nextExpFileName'] = ''
 UserChoices['iterativeAnalysis']['iterationNumber'] = None #just initializing.
@@ -95,7 +95,7 @@ UserChoices['linearBaselineCorrectionSemiAutomatic'] = {} #initialize the linear
 UserChoices['linearBaselineCorrectionSemiAutomatic']['on'] = 'yes'  #selection can be 'yes' or 'no'
 UserChoices['linearBaselineCorrectionSemiAutomatic']['baselineType'] = ['linear'] 	#baselineType may be either 'flat' or 'linear'	
 # if you would like to apply this correction to all fragments, leave as []
-UserChoices['linearBaselineCorrectionSemiAutomatic']['massesToBackgroundCorrect'] = []			#mflist: enter mass list delimited With commas [m1, m2, m3]. Leave blank for all.
+UserChoices['linearBaselineCorrectionSemiAutomatic']['massesToBackgroundCorrect'] = []			#mflist: enter mass list delimited With commas [m1, m2, m3]. Leave blank for all masses.
 # to apply a uniform time range to all fragments, only insert one time range as such [[x,y]]
 UserChoices['linearBaselineCorrectionSemiAutomatic']['earlyBaselineTimes'] = [[850,870]]	# to apply different times for each fragment enter time pairs as such [[x,y],[z,w]..]
 # to apply a uniform time range to all fragments, only insert one time range [[x,y]]
@@ -150,17 +150,24 @@ UserChoices['scaleRawDataYorN']['scaleRawDataFactor'] = 1
 #Note that 1 is the default and will make no alteration to the data
 
 #//Tuning Corrector - Reference Correction Coefficients//
-UserChoices['measuredReferenceYorN'] = {} #initialize the measuredReferenceYorN container
+UserChoices['tuningCorrection'] = {} #initialize the tuningCorrection container
 #TODO Reference Correction Coefficients feature should be upgraded to enable separate coefficients for each molecule to allow mixing and matching of reference patterns
 #TODO This can be tested by looking at the exported reference file and comparing it to the existing reference file
 #To change reference data based on mass dependent 2nd degree polynomial fit, input polynomial below. If you do not wish to use this function, simply leave as default
-UserChoices['measuredReferenceYorN']['on'] ='no'
-UserChoices['measuredReferenceYorN']['referenceFileExistingTuningAndForm'] =['ReferenceCollected.csv','xyyy']
-UserChoices['measuredReferenceYorN']['referenceFileDesiredTuningAndForm'] =['ReferenceLiterature.csv','xyyy']
-#The reference correction coefficients are always used.  If measuredReferenceYorN is 'yes' then the coefficients are overwritten (Ashi thinks it will generate a new reference pattern)
-UserChoices['measuredReferenceYorN']['referenceCorrectionCoefficients'] = {'A': 0.0, 'B': 0.0, 'C': 1.0}	
+UserChoices['tuningCorrection']['on'] ='no'
+UserChoices['tuningCorrection']['tuningCorrectPatternInternalVsExternal'] = 'External' #the options are 'External' or 'Internal'. Typically, External with createMixedTuningPattern is used.  With "External", the existing pattern is assumed to be an External pattern and is tuning corrected. With "Internal" the existing pattern is assumed to be an Internal pattern, and the analysis pattern is changed to match the tuning of the desired pattern. Another use of 'Internal' when applying reference Coefficients manually to the Reference Analysis pattern. As of Nov 2021, if "External" is used, then at least one of referenceFileStandardTuningAndForm and referenceFileExistingTuningAndForm must be filled.
+UserChoices['tuningCorrection']['referenceFileStandardTuningAndForm'] = [] #optional: Provides tuningCorrectionIntensity feature. Must include csv file and form. Example: ['NISTRef.csv', 'xyyy'] .     Will automatically be used for ReferenceFileExistingTuning if that variable is blank and if createMixedTuningPattern=True.
+UserChoices['tuningCorrection']['createMixedTuningPattern'] = True #Users should normally never change this.  If True, the external pattern gets changed, and a mixed reference pattern gets changded. If False, the *internal* pattern gets changed. 
+UserChoices['tuningCorrection']['referenceFileExistingTuningAndForm'] =[] #This is the pattern that will be pattern tuning corrected. Normally should be empty list, []. Otherwise, must include csv file and form. Example: ['NISTRef.csv', 'xyyy'] .
+UserChoices['tuningCorrection']['referenceFileDesiredTuningAndForm'] =[] #This is what the pattern will look more like after everything is done. Normally should be empty, list, []. Otherwise, must include csv file and form. Example: ['OriginalRef.csv', 'xyyy'] .
+UserChoices['tuningCorrection']['tuningCorrectorGasMixtureMoleculeNames'] =[]         #Optional: Special case, When using tuning corrector with a measured gas mixture spectrum molecule names must be provided (along with filling the next two variables).
+UserChoices['tuningCorrection']['tuningCorrectorGasMixtureConcentrations'] =[]        #Optional: Special case, When using tuning corrector with a measured gas mixture spectrum concetrations must be provided
+UserChoices['tuningCorrection']['tuningCorrectorGasMixtureSignals'] = []  #Optional: Special case, When using tuning corrector with a measured gas mixture spectrum, tuningCorrectorGasMixtureSignals must be provided or will be used to extract from the data. Leaving this unchanged will take the average of all of the data. If a pair of times is provided, that will be used to extract from the measured data. Alternatively, a single filename with an MSRESOLVE reference file and molecule name "GaxMixture".
+
+#The reference correction coefficients are always used.  If tuningCorrection is 'yes' then the coefficients are overwritten and a new reference pattern is also generated to look more like the "Literature" case.
+UserChoices['tuningCorrection']['referenceCorrectionCoefficients'] = {'A': 0.0, 'B': 0.0, 'C': 1.0}	
                             #default is 'A': 0.0, 'B': 0.0, 'C': 1.0.   Used as.... Factor = A*X^2 + B*X + C, so A=0,B=0,C=1.0 means the final factor is 1.0 and independent of molecular weight.
-UserChoices['measuredReferenceYorN']['referenceCorrectionCoefficients_cov'] = [0,0,0] #Covariance for reference correction coefficients for tuning corrector. Default is 0,0,0. Can be 9 x 9 covariance.
+UserChoices['tuningCorrection']['referenceCorrectionCoefficients_cov'] = [0,0,0] #Covariance for reference correction coefficients for tuning corrector. Default is 0,0,0. Can be 9 x 9 covariance.
 
 
 #//Reference Pattern Changer // (rpc)
@@ -176,14 +183,14 @@ UserChoices['extractReferencePatternFromDataOption']['rpcTimeRanges'] = [
 #The first mass fragment is the base fragment and it will not be changed.  The fragments following the first one are all altered based on the signal of the first fragment from the collected data
 UserChoices['extractReferencePatternFromDataOption']['rpcMoleculesToChangeMF'] = [
                                                                                   [28 ,12	,13	,14	,15	,16	,17	,21	,22	,24	,25	,26	,27	,29	,30], #For each molecule for using the rpc on, make a new line with a list of masses (length of each should be greater than 1).
-                                                                                  ]
+                                                                                  ]   #Make sure every mass you listed was collected otherwise there will be an error.
 
 #//Reference Mass Fragmentation Threshold//
-UserChoices['minimalReferenceValue'] = {} #initialize the minimalReferenceValue container
+UserChoices['applyReferenceMassFragmentsThresholds'] = {} #initialize the applyReferenceMassFragmentsThresholds container
 # if you want to exclude tiny fragmentation peaks
-UserChoices['minimalReferenceValue']['on'] = 'yes'
-UserChoices['minimalReferenceValue']['referenceValueThreshold'] = [1.01]
-UserChoices['minimalReferenceValue']['referenceSignificantFragmentThresholds'] = [20.0]
+UserChoices['applyReferenceMassFragmentsThresholds']['on'] = 'yes'
+UserChoices['applyReferenceMassFragmentsThresholds']['referenceMassFragmentFilterThreshold'] = [1.01]
+UserChoices['applyReferenceMassFragmentsThresholds']['referenceSignificantFragmentThresholds'] = [20.0]
 
 #//Data Threshold Filter//
 UserChoices['lowerBoundThresholdChooser'] = {} #initialize the lowerBoundThresholdChooser container
@@ -227,8 +234,9 @@ UserChoices['rawSignalThresholdMethod']['rawSignalThresholdLimitPercent'] = []
 #//Uncertainties for Calculating Uncertainties in Concentrations//
 UserChoices['uncertainties'] = {}
 UserChoices['uncertainties']['calculateUncertaintiesInConcentrations'] = True
-UserChoices['uncertainties']['referenceFileUncertainties'] = 'File' #which can be a float/integer for absolute uncertainties or the value True (or the value 'File'. Will expect same file name as reference file with _uncertainties after that) or the value None (False will also be set to None) . For example, the value 2 would mean a 2% uncertainty for the value 100, but a 50% uncertainty for the value of 4.
-UserChoices['uncertainties']['collectedFileUncertainties'] =  2 # Can be 'Auto' or 'File' or 'None' or an Integer like 3 (no quotation marks). If 'File', will expect same file name as collected file with _uncertainties after that). An integer defines a point radius. 'Auto' simply uses a point radius of 5.
+UserChoices['uncertainties']['referencePatterns_uncertainties'] = 'File' #which can be a float/integer for absolute uncertainties or the value True (or the value 'File'. Will expect same file name as reference file with _absolute_uncertainties.csv at end of file name) or the value None (False will also be set to None) . For example, the value 2 would mean a 2% uncertainty for the value 100, but a 50% uncertainty for the value of 4.
+UserChoices['uncertainties']['dataToAnalyze_uncertainties'] =  2 # Can be 'Auto' or 'File' or 'None' or an Integer like 3 (no quotation marks). Or, you can put in a list: one value for each mass, which will be used for all times. If 'File', will expect same file name as collected file with _uncertainties after that). An integer defines a point radius. 'Auto' without dataSmoother simply uses a point radius of 5. If dataSmoother is being used, it is strongly recommended to set this to 'auto', in which case the range used for each window will match that of dataSmoother. 
+UserChoices['uncertainties']['dataToAnalyze_uncertainties_radiusType'] = 'pointrange' #Can be 'pointrange' or 'timerange'.  If dataToAnalyze_uncertainties is set to auto, then the radiustype will be forced to match datasmoother choice (if dataSmoother is being used), or will be forced to 'pointrange' (if dataSmoother is not being used).
 UserChoices['uncertainties']['referenceCorrectionCoefficientsUncertainties'] = None #Else a dictionary of uncertainties for 'A', 'B', 'C'. Not yet implemented.
 UserChoices['uncertainties']['referenceCorrectionCoefficientsIonizationUncertainties'] = None #Not yet implemented.
 
@@ -242,16 +250,17 @@ UserChoices['negativeAnalyzerYorN']['NegativeAnalyzerBaseNumberOfGridIntervals']
 #//Data Analysis Methods
 UserChoices['dataAnalysisMethods'] = {} #initialize the dataAnalysisMethods container
 #Below the path for the analysis of the data; sls or inverse
-UserChoices['dataAnalysisMethods']['answer'] = 'sls'	#'inverse' or 'sls'; sls is suggested
-UserChoices['dataAnalysisMethods']['uniqueOrCommon'] = 'unique'	#'unique' or 'common'; common is suggested
+UserChoices['dataAnalysisMethods']['solverChoice'] = 'sls'	#'inverse' or 'sls'; sls is suggested
+UserChoices['dataAnalysisMethods']['uniqueOrCommon'] = 'unique'	#'unique' or 'common'; unique is suggested when uncertainties will be used.
 UserChoices['dataAnalysisMethods']['slsWeighting'] = [1,1,1,1] #The first uses uncertainties weighting. The second solves for largest concentrations first. The third uses reference peak height. The fourth uses the signal intensity.  All can be on at the same time. 
-UserChoices['dataAnalysisMethods']['slsFinish'] = 'brute'	#'brute' or 'inverse'; brute is suggested
+UserChoices['dataAnalysisMethods']['slsFinish'] = 'brute'	#'brute' or 'inverse'; inverse is currently suggested if using the uncertainties feature.
 UserChoices['dataAnalysisMethods']['slsUniquePositiveConcentrationsOnly'] = False #Can be true or false. This is faster but less accurate than NegativeAnalyzer
 UserChoices['dataAnalysisMethods']['objectiveFunctionType'] = 'ssr'	#objectiveFunctionType = 'ssr', 'sar', 'weightedSAR' or 'weightedSSR' 
 UserChoices['dataAnalysisMethods']['distinguished'] = 'yes'
 UserChoices['dataAnalysisMethods']['fullBrute'] = 'yes'
 UserChoices['dataAnalysisMethods']['SLSUniqueExport'] = 'yes'
-UserChoices['dataAnalysisMethods']['implicitSLScorrection'] = True
+UserChoices['dataAnalysisMethods']['implicitSLScorrection'] = True #recommended when doing SLS Unique with uncertainties.
+UserChoices['dataAnalysisMethods']['implicitSLSRecursion'] = 0  #This variable is currently a work in progress. As of 3/17/2022, this input does nothing. In the future, it will be used as an input to control Implicit SLS Recursion
 UserChoices['dataAnalysisMethods']['finalOptimization'] = 'None' #options are 'None' or... 'Nelder-Mead','Powell','CG','BFGS','Newton-CG','L-BFGS-B','TNC','COBYLA','SLSQP','dogleg','trust-ncg','trust-xact','trust-krylov' from scipy.optimize.minimze
 
 #//Concentration Finder//
@@ -260,8 +269,8 @@ UserChoices['concentrationFinder'] = {} #initialize the concentrationFinder cont
 #here you put in a known raw signal intensity and the known concentration it corresponds to. 
 #TODO Note: Concentration Finder is not compatible with simultaneous use of multiple reference files AND separate molecules' factors as of 181022. Currently, it a user may use either one or the other.
 UserChoices['concentrationFinder']['on'] = 'no'
-UserChoices['concentrationFinder']['TSC_List_Type'] = 'MultipleReferencePatterns' #Options are 'MultipleReferencePatterns' or 'SeparateMoleculesFactors'
-UserChoices['concentrationFinder']['moleculesTSC_List'] = 'Acetaldehyde'
+UserChoices['concentrationFinder']['TSC_List_Type'] = 'MultipleReferencePatterns' #Options are 'MultipleReferencePatterns' or 'SeparateMolecularFactors'
+UserChoices['concentrationFinder']['moleculesTSC_List'] = 'Acetaldehyde' #Default concentration factors will be calculated for each molecule to match the first moleculeTSC input
 UserChoices['concentrationFinder']['massNumberTSC_List'] = 29
 UserChoices['concentrationFinder']['moleculeSignalTSC_List'] = 1.66945 #This is the list of intensity values that correspond to a known concentration to scale with for the same mass fragments
 UserChoices['concentrationFinder']['moleculeConcentrationTSC_List'] = 0.05	#this is the concentration/pressure associated with the signal.
@@ -272,10 +281,10 @@ UserChoices['outputFiles'] = {} #initialize the outputFiles container
 #the last section designates the various output files, all are suppose to be csv values
 #If files do not exist they will be generated
 UserChoices['outputFiles']['preProcessedDataOutputName'] = 'PreProcessedData.csv'
-UserChoices['outputFiles']['resolvedScaledConcentrationsOutputName'] = 'ScaledConcentrations.csv'
-UserChoices['outputFiles']['scaledConcentrationsPercentages'] = 'ScaledConcentrationPercentages.csv'
-UserChoices['outputFiles']['concentrationsOutputName'] = 'ResolvedConcentrations.csv'
-UserChoices['outputFiles']['simulatedSignalsOutputName'] = 'SimulatedRawSignals.csv'
+UserChoices['outputFiles']['resolvedScaledConcentrationsOutputName'] = 'ScaledConcentrations.tsv'  #tsv makes a comma separated file, csv makes a comma separated file.
+UserChoices['outputFiles']['scaledConcentrationsPercentages'] = 'ScaledConcentrationPercentages.tsv'  #tsv makes a comma separated file, csv makes a comma separated file.
+UserChoices['outputFiles']['concentrationsOutputName'] = 'ResolvedConcentrations.tsv'  #tsv makes a comma separated file, csv makes a comma separated file.
+UserChoices['outputFiles']['simulatedSignalsOutputName'] = 'SimulatedRawSignals.csv' 
 
 UserChoices['ExportAtEachStep'] = {} #initialize the ExportAtEachStep container
 UserChoices['ExportAtEachStep']['on'] = 'no'
@@ -294,4 +303,4 @@ from userInputValidityFunctions import populateModuleVariablesFromDictionary
 SettingsVDictionary = userInputValidityCheck(UserChoices)
 populateModuleVariablesFromDictionary(thisModuleObject, SettingsVDictionary)
 ####End of temporary code####
-__var_list__ = ['referenceFileNamesList','referenceFormsList','collectedFileName','referencePatternTimeRanges','ionizationDataFileName','iterativeAnalysis','iterationNumber','iterationSuffix','unusedMolecules','oldReferenceFileName', 'oldCollectedFileName', 'nextRefFileName', 'nextExpFileName','preProcessing','dataAnalysis','dataSimulation','grapher','stopAtGraphs','timeRangeLimit','timeRangeStart','timeRangeFinish','specificMolecules','chosenMoleculesNames','specificMassFragments','chosenMassFragments','moleculeLikelihoods','sensitivityValues','linearBaselineCorrectionSemiAutomatic','baselineType','massesToBackgroundCorrect','earlyBaselineTimes','lateBaselineTimes','backgroundMassFragment','backgroundSlopes','backgroundIntercepts','interpolateYorN','marginalChangeRestriction','ignorableDeltaYThreshold','dataLowerBound','dataUpperBound','dataRangeSpecifierYorN','signalOrConcentrationRange','csvFile','moleculesToRestrict','csvFileName','bruteIncrements','permutationNum','maxPermutations','scaleRawDataOption','scaleRawDataFactor','measuredReferenceYorN','referenceFileExistingTuningAndForm','referenceFileDesiredTuningAndForm','referenceCorrectionCoefficients','referenceCorrectionCoefficients_cov','extractReferencePatternFromDataOption','rpcMoleculesToChange','rpcMoleculesToChangeMF','rpcTimeRanges','minimalReferenceValue','referenceValueThreshold','referenceSignificantFragmentThresholds','lowerBoundThresholdChooser','massesToLowerBoundThresholdFilter','lowerBoundThresholdPercentage','lowerBoundThresholdAbsolute','dataSmootherYorN','dataSmootherChoice','dataSmootherTimeRadius','dataSmootherPointRadius','dataSmootherHeadersToConfineTo','polynomialOrder','rawSignalThresholdMethod','rawSignalThresholdValue','sensitivityThresholdValue','rawSignalThresholdDivider','rawSignalThresholdLimit','rawSignalThresholdLimitPercent','negativeAnalyzerYorN','NegativeAnalyzerTopNContributors','NegativeAnalyzerBaseNumberOfGridIntervals','calculateUncertaintiesInConcentrations' , 'referenceFileUncertainties' ,'collectedFileUncertainties','referenceCorrectionCoefficientsUncertainties', 'referenceCorrectionCoefficientsIonizationUncertainties' ,'answer','uniqueOrCommon','slsWeighting','slsFinish','slsUniquePositiveConcentrationsOnly','objectiveFunctionType','distinguished','fullBrute','SLSUniqueExport', 'implicitSLScorrection', 'finalOptimization', 'concentrationFinder','moleculesTSC_List','TSC_List_Type','moleculeSignalTSC_List','massNumberTSC_List','moleculeConcentrationTSC_List','unitsTSC','preProcessedDataOutputName','resolvedScaledConcentrationsOutputName','scaledConcentrationsPercentages','concentrationsOutputName','simulatedSignalsOutputName','TotalConcentrationsOutputName','ExportAtEachStep','generatePercentages','checkpoint','start','timeSinceLastCheckpoint', 'iterationNumber']
+__var_list__ = ['referencePatternsFileNamesList','referencePatternsFormsList','dataToAnalyzeFileName', 'referencePatternTimeRanges','ionizationDataFileName','iterativeAnalysis','iterationNumber','iterationSuffix','unusedMolecules','oldReferenceFileName', 'oldDataToAnalyzeFileName', 'nextRefFileName', 'nextExpFileName','preProcessing','dataAnalysis','dataSimulation','grapher','stopAtGraphs','timeRangeLimit','timeRangeStart','timeRangeFinish','specificMolecules','chosenMoleculesNames','specificMassFragments','chosenMassFragments','moleculeLikelihoods','sensitivityValues','linearBaselineCorrectionSemiAutomatic','baselineType','massesToBackgroundCorrect','earlyBaselineTimes','lateBaselineTimes','backgroundMassFragment','backgroundSlopes','backgroundIntercepts','interpolateYorN','marginalChangeRestriction','ignorableDeltaYThreshold','dataLowerBound','dataUpperBound','dataRangeSpecifierYorN','signalOrConcentrationRange','csvFile','moleculesToRestrict','csvFileName','bruteIncrements','permutationNum','maxPermutations','scaleRawDataOption','scaleRawDataFactor','tuningCorrection', 'tuningCorrectPatternInternalVsExternal', 'referenceFileStandardTuningAndForm', 'createMixedTuningPattern', 'referenceFileExistingTuningAndForm','referenceFileDesiredTuningAndForm','referenceCorrectionCoefficients','referenceCorrectionCoefficients_cov','extractReferencePatternFromDataOption','rpcMoleculesToChange','rpcMoleculesToChangeMF','rpcTimeRanges','applyReferenceMassFragmentsThresholds','referenceMassFragmentFilterThreshold','referenceSignificantFragmentThresholds','lowerBoundThresholdChooser','massesToLowerBoundThresholdFilter','lowerBoundThresholdPercentage','lowerBoundThresholdAbsolute','dataSmootherYorN','dataSmootherChoice','dataSmootherTimeRadius','dataSmootherPointRadius','dataSmootherHeadersToConfineTo','polynomialOrder','rawSignalThresholdMethod','rawSignalThresholdValue','sensitivityThresholdValue','rawSignalThresholdDivider','rawSignalThresholdLimit','rawSignalThresholdLimitPercent','negativeAnalyzerYorN','NegativeAnalyzerTopNContributors','NegativeAnalyzerBaseNumberOfGridIntervals','calculateUncertaintiesInConcentrations' , 'referencePatterns_uncertainties' ,'dataToAnalyze_uncertainties','referenceCorrectionCoefficientsUncertainties', 'referenceCorrectionCoefficientsIonizationUncertainties' ,'solverChoice','uniqueOrCommon','slsWeighting','slsFinish','slsUniquePositiveConcentrationsOnly','objectiveFunctionType','distinguished','fullBrute','SLSUniqueExport', 'implicitSLScorrection', 'implicitSLSRecursion', 'finalOptimization', 'concentrationFinder','moleculesTSC_List','TSC_List_Type','moleculeSignalTSC_List','massNumberTSC_List','moleculeConcentrationTSC_List','unitsTSC','preProcessedDataOutputName','resolvedScaledConcentrationsOutputName','scaledConcentrationsPercentages','concentrationsOutputName','simulatedSignalsOutputName','TotalConcentrationsOutputName','ExportAtEachStep','generatePercentages','checkpoint','start','timeSinceLastCheckpoint', 'iterationNumber']

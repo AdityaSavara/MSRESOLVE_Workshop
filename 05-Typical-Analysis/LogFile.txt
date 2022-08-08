@@ -1,0 +1,13 @@
+Sun Jul 24 01:35:30 2022
+
+referenceFileName = ['ExtractedReferencePattern.csv'] 
+form  = ['xyyy'] 
+dataToAnalyzeFileName = Collected_GasPulse.csv 
+answer = inverse 
+distinguished = yes 
+scaleRawDataFactor  = 1.0 
+resolvedScaledConcentrationsOutputName  = ScaledConcentrations.tsv 
+concentrationsOutputName = ResolvedConcentrations.tsv 
+simulatedSignalsOutputName = SimulatedRawSignals.csv 
+Run Time 1.58743 seconds 
+###################################################################### 
