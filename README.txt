@@ -1,12 +1,3 @@
-TODO: Change ResolvedConcentrations_absolute_uncertainties.csv and ResolvedConcentrations_relative_uncertainties.csv into ".tsv" files.
-TODO: Change 'solverChoice' to solver
-TODO: change 'referenceMeasured' to 'tuningCorrector
-
-UserChoices['tuningCorrection'] --> 'tuningCorrection'
-UserChoices['dataAnalysisMethods']['solverChoice'] --> '['dataAnalysisMethods']['solverChoice']
-UserChoices['applyReferenceMassFragmentsThresholds'] --> ['referenceMassFragmentThresholds']
-
-
 These are the MSRESOLVE Workshop materials, put together for a workshop in August 2022.
 It is intended for people to use these directories alongside the "Quickstart" document (which is included).
 Different directories have different examples of tasks that can be performed with MSRESOLVE.
@@ -14,6 +5,8 @@ Different directories have different examples of tasks that can be performed wit
 Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" , or can be run by pressing the play button after opening in spyder.
 
 It will be useful to use "ctrl+f" in the UserInput file.
+
+TODO: Change ResolvedConcentrations_absolute_uncertainties.csv and ResolvedConcentrations_relative_uncertainties.csv into ".tsv" files.
 
 00 An introductory slide.
 
