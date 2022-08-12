@@ -15,6 +15,7 @@ Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" 
 
 It will be useful to use "ctrl+f" in the UserInput file.
 
+00 An introductory slide.
 
 01  "Run" a premade typical analysis: 
     Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out. Section 2.3 of the Quickstart explains what the various files are.
