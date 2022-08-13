@@ -1,6 +1,7 @@
 These are the MSRESOLVE Workshop materials, put together for a workshop in August 2022.
 Different directories have different examples of tasks that can be performed with MSRESOLVE.
 
+If you have not already done so, install the requqired dependencies using the following command from spyder or an anaconda prompt: pip install -r requirements.txt
 Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" , or can be run by pressing the play button after opening in spyder.
 
 It will be useful to use "ctrl+f" in the UserInput file.
