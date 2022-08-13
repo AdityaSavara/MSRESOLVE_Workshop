@@ -1,5 +1,4 @@
 These are the MSRESOLVE Workshop materials, put together for a workshop in August 2022.
-It is intended for people to use these directories alongside the "Quickstart" document (which is included).
 Different directories have different examples of tasks that can be performed with MSRESOLVE.
 
 Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" , or can be run by pressing the play button after opening in spyder.
@@ -149,3 +148,4 @@ creates a mixed reference pattern where butanal comes from the    ReferenceLiter
    and ExportedReferencePatternStandardForCorrectionValuesMixedStandardTuningRearranged.tsv <-- this is strange, because it only has the original 3 molecules and Source:	NIST Webbook	NIST Webbook	NIST Webbook
 
    
+After the workshop, attendees may want to go through the "MSRESOLVE_QUICKSTART_AND_EXAMPLE_ANALYSIS" document, which is included with the workshop files.
