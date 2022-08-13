@@ -9,6 +9,8 @@ Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" 
 
 00 An introductory slide.
 
+Before working on the exercises, we now need to get an anaconda window or spyder window open.
+
 01  "Run" a premade typical analysis: 
     Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out. Section 2.3 of the Quickstart explains what the various files are.
     ScaledConcentrations.csv  and the graphs directory are the main outputs.
@@ -55,6 +57,7 @@ Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" 
    Note: This is similar to section 3.2 of the quick start guide.
    
 04 How to do a typical analysis continued:
+  [DELETE 04 DIRECTORY IF IT EXISTS] 
    Copy Directory 3 and paste it. Then rename the new directory to start with "04"
    
    We are now going to use the sequential linear subtraction (SLS) feature of MSRESOLVE. This is a 'special' feature of MSRESOLVE, and in various cases, it produces more accureate results than the 'inverse' way (inverse is what most other programs would use). It will be useful to see some of the intermediate calculations that MSRESOLVE can export to file.
@@ -93,6 +96,7 @@ Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" 
    linearBaselineCorrectionSemiAutomatic to on and put in times
   
 05 How to do a typical analysis continued:   
+    [DELETE 05 DIRECTORY IF IT EXISTS] 
    Make a copy of directory 4. Rename it to 05.
    ctrl + f  for sls, then change the solving for answer choice to 'inverse'.
    Now run MSRESOLVE.
@@ -100,6 +104,7 @@ Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" 
      
    
 06 In this example, we will use the concentration finder feature 
+    [DELETE 06 DIRECTORY IF IT EXISTS] 
    Copy directory 05.
    Change back to sls.
    UserChoices['concentrationFinder']['on'] = 'no'  #Change this to 'yes'.
@@ -118,9 +123,12 @@ Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" 
    
    
 07 Now let's make an example where want to add a molecule to our reference file. Let's say Ethanol
-   We can copy the data out of the JDXConverter output and place it in the file.
-   Note that the molecule fragmentation patterns are not even on the same scale. That   is fine. MSRESOLVEE will standardize them.
-   Because we are using uncertainties from file, we need to update that file, too.
+   First make a copy of an existing directory (such as 06).
+   For the molecule we want to add, we can copy the data out of the JDXConverter output and place it in the reference file.
+    --> first check the UserInput.py file to find out what the name of the reference file is.
+    --> then open that file so that you can add the missing reference pattern.
+    --> after pasting, you'll see the molecule fragmentation patterns are not even on the same scale. That is fine. MSRESOLVEE will standardize them.
+    --> Because we are using reference uncertainties from file, we need to update that file, too. The uncertainties file is *absolute** uncertainties, so make the uncertainties of the extent desired. 5% of the pattern? Or a fixed amount for all mass fragments?
    We use 'inverse' for this example, because sls doesn't work well on this example.
    
 08 Tuning correction:
