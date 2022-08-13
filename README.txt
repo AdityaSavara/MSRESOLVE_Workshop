@@ -1,5 +1,5 @@
 These are the MSRESOLVE Workshop materials, put together for a workshop in August 2022.
-Different directories have different examples of tasks that can be performed with MSRESOLVE.
+Different directories exist and will also be made by the user for different examples of tasks that can be performed with MSRESOLVE.
 
 PARTICIPANTS ARE EXPECTED TO HAVE ANACONDA INSTALLED AND TO HAVE TESTED THAT MSRESOLVE RUNS PRIOR TO THIS WORKSHOP.
 IF THEY HAVE NOT ALREADY DONE SO, PARTICIPANTS SHOULD FOLLOW THE INSTRUCTIONS IN 000-ParticpantWorkshopPreparationInstructions.docx
