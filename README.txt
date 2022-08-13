@@ -4,9 +4,7 @@ Different directories have different examples of tasks that can be performed wit
 If you have not already done so, install the requqired dependencies using the following command from spyder or an anaconda prompt: pip install -r requirements.txt
 Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" , or can be run by pressing the play button after opening in spyder.
 
-It will be useful to use "ctrl+f" in the UserInput file.
 
-TODO: Change ResolvedConcentrations_absolute_uncertainties.csv and ResolvedConcentrations_relative_uncertainties.csv into ".tsv" files.
 
 00 An introductory slide.
 
@@ -31,10 +29,10 @@ TODO: Change ResolvedConcentrations_absolute_uncertainties.csv and ResolvedConce
    MSRESOLVE does have features for extracting reference patterns from data, which may occur in a later workshop exercise.
     
 03 How to do a typical analysis.
-   This is similar to section 3.2 of the quick start guide.
    Directory 01 has been copied to make directory 3.  However, all of the features normally used have been turned off.
    
    Open the UserInput.py file. Normally, a user must put their settings into this file before each analysis.
+   It will be useful to use "ctrl+f" in the UserInput file.
    Change the data input file:
    UserChoices['inputFiles']['dataToAnalyzeFileName'] = 'Collected_GasPulse.csv'
    
@@ -53,7 +51,7 @@ TODO: Change ResolvedConcentrations_absolute_uncertainties.csv and ResolvedConce
    UserChoices['linearBaselineCorrectionSemiAutomatic']['on'] = ___
    UserChoices['linearBaselineCorrectionSemiAutomatic']['earlyBaselineTimes'] = ___
    UserChoices['linearBaselineCorrectionSemiAutomatic']['lateBaselineTimes'] =  ___
-      
+   Note: This is similar to section 3.2 of the quick start guide.
    
 04 How to do a typical analysis continued:
    Copy Directory 3 and paste it. Then rename the new directory to start with "04"
