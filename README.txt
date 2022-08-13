@@ -5,7 +5,9 @@ PARTICIPANTS ARE EXPECTED TO HAVE ANACONDA INSTALLED AND TO HAVE TESTED THAT MSR
 IF THEY HAVE NOT ALREADY DONE SO, PARTICIPANTS SHOULD FOLLOW THE INSTRUCTIONS IN 000-ParticpantWorkshopPreparationInstructions.docx
 
 If you have not already done so, install the required dependencies using the following command from spyder or an anaconda prompt: pip install -r requirements.txt
+If pip does not work, first install pip and spyder from the anaconda interface or typing in "conda install pip" and "conda install spyder"
 Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" , or can be run by pressing the play button after opening in spyder.
+
 
 00 An introductory slide.
 
