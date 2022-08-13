@@ -6,17 +6,20 @@ IF THEY HAVE NOT ALREADY DONE SO, PARTICIPANTS SHOULD FOLLOW THE INSTRUCTIONS IN
 
 If you have not already done so, install the required dependencies using the following command from spyder or an anaconda prompt: pip install -r requirements.txt
 If pip does not work, first install pip and spyder from the anaconda interface or typing in "conda install pip" and "conda install spyder"
-Python files can be run from an anaconda prompt by typing "python MSRESOLVE.py" , or can be run by pressing the play button after opening in spyder.
+Python files can be run from an anaconda prompt by typing "python runfile.py" , or can be run by pressing the play button after opening in spyder.
 
 
 00 An introductory slide.
 
-Before working on the exercises, we now need to get an anaconda window or spyder window open.
+   Before working on the exercises, we now need to get an anaconda window or spyder window open.
+   
 
 01  "Run" a premade typical analysis: 
     Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out. Section 2.3 of the Quickstart explains what the various files are.
-    ScaledConcentrations.csv  and the graphs directory are the main outputs.
-    As noted in section, Section 3.1 , for this analysis there is no 'detectable' Ethene or Actylene (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
+    ScaledConcentrations.tsv  and the graphs directory are the main outputs.
+    Right click on ScaledConcentrations.tsv, click on properties, and click "change" to change the default program for opening the tsv to be excel. Note: you may need to find out where excel is on your computer.
+    TSV files can also be dragged into excel when excel is already open.
+    As noted in Section 3.1 of the Quickstart document, for this analysis there is no 'detectable' Ethene or Actylene (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
 
 02 Creating a reference pattern file.
    Open the MoleculesInfo.tsv 
@@ -26,6 +29,7 @@ Before working on the exercises, we now need to get an anaconda window or spyder
    
    Choose a molecule with a common name (such as acetone) and try removing the number of electrons and molecular weight.
    Then run JDXConverter.py. During the run, you can just press enter twice since we are not using any special options.
+   If it does not run, use 'pip install -r requirements.txt'  (this is now for the JDXConverter.py requirements)
    
    Open the output files and open the tsv file.
    
