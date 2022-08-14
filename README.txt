@@ -22,14 +22,18 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
     As noted in Section 3.1 of the Quickstart document, for this analysis there is no 'detectable' Ethene or Actylene (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
 
 02 Creating a reference pattern file.
+   This section is OPTIONAL for MSRESOLVE, but is useful, as it describes how to retrieve reference patterns from online by use of JDXConverter (another program).
    Open the MoleculesInfo.tsv 
    To add more molecueles, add rows with additional molecule names. 
    When adding new molecules, it is possible to leave the number of electrons, molecular weight, etc. as blank: JDXConverter will retrieve the missing information from online
    as long as the molecule exists at NIST Webbook.
    
    Choose a molecule with a common name (such as acetone) and try removing the number of electrons and molecular weight.
-   Then run JDXConverter.py. During the run, you can just press enter twice since we are not using any special options.
-   If it does not run, use 'pip install -r requirements.txt'  (this is now for the JDXConverter.py requirements)
+   Let's also add the molecule "methanol" at the bottom.
+   Open an anaconda prompt because JDXConverter does not work from spyder.
+   use 'pip install -r requirements.txt'  (this is now for the JDXConverter.py requirements)
+   Then 'python JDXConverter.py' 
+   During the run, you can just press enter twice since we are not using any special option.
    
    Open the output files and open the tsv file.
    
@@ -46,8 +50,6 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    UserChoices['inputFiles']['dataToAnalyzeFileName'] = 'Collected_GasPulse.csv'
    
    Now try to run MSRESOLVE.py
-   
-   The uncertainties are not able to be calculated, but let's come back to that point a bit later.
    
    Look at the graphs. Note that there is some kind of early time behavior that is not the ethane pulse. Let's get rid of that.
    Turn on the "Time Range" feature, and put in a start and finish time that will remove that early region while keeping the main pulse.
