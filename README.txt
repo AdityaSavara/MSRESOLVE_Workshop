@@ -15,8 +15,8 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    
 
 01  "Run" a premade typical analysis: 
-    Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out in that directory. Section 2.3 of the Quickstart explains what the various files are.
-    ScaledConcentrations.tsv  and the graphs directory are the main outputs.
+    Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out in that directory.
+    ScaledConcentrations.tsv  and the graphs directory are the main outputs.  Section 2.3 of the Quickstart explains what the various files are.
     Right click on ScaledConcentrations.tsv, click on properties, and click "change" to change the default program for opening the tsv to be excel. Note: you may need to find out where excel is on your computer.
     TSV files can also be dragged into excel when excel is already open.
     As noted in Section 3.1 of the Quickstart document, for this analysis there is no 'detectable' Ethene or Actylene (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
