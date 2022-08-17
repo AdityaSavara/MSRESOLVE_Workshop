@@ -23,23 +23,26 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
 
 02 Creating a reference pattern file.
    This section is OPTIONAL for MSRESOLVE, but is useful, as it describes how to retrieve reference patterns from online by use of JDXConverter (another program).
+   In this directory and your anaconda prompt, use 'pip install -r requirements.txt'  (this is now for the JDXConverter.py requirements)
    Open the MoleculesInfo.tsv 
    To add more molecueles, add rows with additional molecule names. 
    When adding new molecules, it is possible to leave the number of electrons, molecular weight, etc. as blank: JDXConverter will retrieve the missing information from online
    as long as the molecule exists at NIST Webbook.
    
-   Choose a molecule with a common name (such as acetone) and try removing the number of electrons and molecular weight.
-   Let's also add the molecule "methanol" at the bottom.
-   Open an anaconda prompt because JDXConverter does not work from spyder.
-   use 'pip install -r requirements.txt'  (this is now for the JDXConverter.py requirements)
-   Then 'python JDXConverter.py' 
+   Add the name "methanol" at the bottom and save
+   For acetone, remove the number of electrons and molecular weight, and save.
+   
+   To run the program, use an anaconda prompt because JDXConverter does not work from spyder.
+   Use 'python JDXConverter.py' 
    During the run, you can just press enter twice since we are not using any special option.
    
-   Open the output files and open the tsv file.
+   Open the directory "OutputFiles" and open the .tsv file for ConvertedSpectra with the highest number (should be 1).
    
+   Now you know how to retrieve spectra and meta data from online.
    For use in any MSRESOLVE run, you can delete any undesired columns.
-   NOTE: it is always best to have a reference pattern measured for *each* molecule. However, using individual NIST patterns is reasonable for any molecules that do not have a directly measured pattern.
-   MSRESOLVE does have features for extracting reference patterns from data, which may occur in a later workshop exercise.
+   NOTE: it is always best to have a reference pattern measured for *each* molecule. 
+   However, using such retrieved reference patterns (which come from NIST) is reasonable for any molecules that does not have a directly measured pattern.
+   MSRESOLVE does have features for extracting reference patterns from measured data.
     
 03 How to do a typical analysis.
    Directory 01 has been copied to make directory 3.  However, all of the features normally used have been turned off.
