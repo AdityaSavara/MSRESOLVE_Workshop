@@ -1,4 +1,4 @@
-# molecules 	Acetylene	Ethylene	Ethane
+# molecules 	ethyne	ethene	ethane
 ScaledConcentrations_Means	-4.566198045319777e-12	1.6788037629282727e-10	1.3916148267292726e-08
 ScaledConcentrations_StdDevs	3.927731417746866e-11	9.57192565773441e-10	4.124540817166053e-08
 ScaledConcentrations_StdErrs	4.798487648869376e-12	1.1693968390252743e-10	5.038928598580778e-09
