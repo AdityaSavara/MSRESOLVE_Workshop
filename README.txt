@@ -15,7 +15,7 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    
 
 01  "Run" a premade typical analysis: 
-    Navigate into that directory and run MSRESOLVE.py.  Various outputs will come out in that directory.
+    Navigate into that directory and run the runfile.py.  Various outputs will come out in that directory.
     ScaledConcentrations.tsv  and the graphs directory are the main outputs.  Section 2.3 of the Quickstart explains what the various files are.
     Right click on ScaledConcentrations.tsv, click on properties, and click "change" to change the default program for opening the tsv to be excel. Note: you may need to find out where excel is on your computer.
     TSV files can also be dragged into excel when excel is already open.
@@ -52,12 +52,12 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    Change the data input file:
    UserChoices['inputFiles']['dataToAnalyzeFileName'] = 'Collected_GasPulse.csv'
    
-   Now try to run MSRESOLVE.py
+   Now try to run runfile.py
    
    Look at the graphs. Note that there is some kind of early time behavior that is not the ethane pulse. Let's get rid of that.
    Turn on the "Time Range" feature, and put in a start and finish time that will remove that early region while keeping the main pulse.
    
-   Now try to run MSRESOLVE.py
+   Now try to run runfile.py
    
    Let's add a baseline correction because that's a good practice (even though this data set does not seem to need it).
 
@@ -77,7 +77,7 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    UserChoices['dataAnalysisMethods']['solverChoice'] = 'sls'
    UserChoices['ExportAtEachStep']['on'] = 'yes'
    
-   Now try to run MSRESOLVE.py
+   Now try to run runfile.py
    
    You will see an error message. Scroll up, and read what the messages printed out were. There is a warning that tells the user that MSRESOLVE was unable to solve the problem with the current settings. The warning notes that:
     "You may want to try using referenceMassFragmentFilterThreshold within the feature Reference Mass Fragmentation Threshold,"
