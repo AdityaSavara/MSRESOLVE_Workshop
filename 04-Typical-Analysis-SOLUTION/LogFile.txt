@@ -1,6 +1,6 @@
 Wed Aug 17 00:42:02 2022
 
-referenceFileName = ['ExtractedReferencePattern.csv'] 
+referenceFileName = ['ExtractedReferencePattern.tsv'] 
 form  = ['xyyy'] 
 dataToAnalyzeFileName = Collected_GasPulse.csv 
 applyReferenceMassFragmentsThresholds = yes 

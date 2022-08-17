@@ -22,7 +22,7 @@ From spyder, you should restart the kernel between runs.
     ScaledConcentrations.tsv  and the graphs directory are the main outputs.  Section 2.3 of the Quickstart explains what the various files are.
     Right click on ScaledConcentrations.tsv, click on properties, and click "change" to change the default program for opening the tsv to be excel. Note: you may need to find out where excel is on your computer.
     TSV files can also be dragged into excel when excel is already open.
-    As noted in Section 3.1 of the Quickstart document, for this analysis there is no 'detectable' Ethene or Actylene (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
+    As noted in Section 3.1 of the Quickstart document, for this analysis there is no 'detectable' Ethene or Ethyne (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
 
 02 Creating a reference pattern file.
    This section is OPTIONAL for MSRESOLVE, but is useful, as it describes how to retrieve reference patterns from online by use of JDXConverter (another program).
@@ -157,13 +157,8 @@ From spyder, you should restart the kernel between runs.
    For this example we are going to include ethanol, again, but this time we are going to include the tuning corrected version.
    Let's take the following steps to get prepared.
      (a) Copy ConvertedSpectra1.tsv from the JDXConverter directory and place it in this one.
-     (b) MSRESOLVE capitalization must be exact. Let's check to make sure the capitalization of the molecule names in our referencePatternsFile matches this external pattern, for the molecules that are in both files and will be used for tuning calibration:
-             ConvertedSpectra1                ExtractedReferencePattern
-             ethyne                           Acetylene
-             ethene                           Ethylene
-             ethane                           Ethane
-        We see that the names used and capitaliation are different in ConvertedSpectra1.tsv. Let's change ExtractedReferencePattern to be the best practices naming and capitalization.
-        
+     (b) MSRESOLVE capitalization must be exact. Let's check to make sure the capitalization of the molecule names in our referencePatternsFile matches this external pattern, for the molecules that are in both files and will be used for tuning calibration. For our case, we will use all lowercase IUPAC naming.
+             
     Now we have everything ready and just need to change our input file according to the requirements noted above!     
      (1) populate our dataToAnalyzeFileName -- This is already done.
      (2) populate our referencePatternsFileNamesList -- This is already done
