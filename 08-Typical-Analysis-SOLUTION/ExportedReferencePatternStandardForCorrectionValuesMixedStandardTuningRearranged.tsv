@@ -1,5 +1,5 @@
 Source:	NIST Webbook	NIST Webbook	NIST Webbook	NIST Webbook
-Molecules	Acetylene	Ethylene	Ethane	ethanol
+Molecules	ethyne	ethene	ethane	ethanol
 Electron Numbers	14	16	18	26
 ionizationEfficiencies	1.0	1.0857142857142859	1.1714285714285713	1.5142857142857142
 ionizationEfficienciesSources	MadixAndKo	MadixAndKo	MadixAndKo	MadixAndKo

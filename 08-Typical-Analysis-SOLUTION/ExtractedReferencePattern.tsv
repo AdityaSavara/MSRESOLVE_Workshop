@@ -1,5 +1,5 @@
 Source:	Measured	Measured	Measured
-Molecules	Acetylene	Ethylene	Ethane
+Molecules	ethyne	ethene	ethane
 Electron Numbers	14	16	18
 Molecular Mass	26.04	28.05	30.07
 12	4.46E-09	1.79E-09	5.24E-10
@@ -17,4 +17,3 @@ Molecular Mass	26.04	28.05	30.07
 28	2.09E-09	1.22E-07	1.03E-07
 29	2.90E-11	2.48E-09	2.19E-08
 30	6.91E-12	2.22E-11	2.16E-08
-31	0.00E+00	0.00E+00	0.00E+00

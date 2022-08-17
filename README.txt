@@ -1,5 +1,8 @@
 These are the MSRESOLVE Workshop materials, put together for a workshop in August 2022.
+At the end of this workshop, participants will know how to use MSRESOLVE in a basic way to get concentrations from mass spectrometry data,
+how to use several of the features, as well as where to find the settings of the many features.
 Different directories exist and will also be made by the user for different examples of tasks that can be performed with MSRESOLVE.
+
 
 PARTICIPANTS ARE EXPECTED TO HAVE ANACONDA INSTALLED AND TO HAVE TESTED THAT MSRESOLVE RUNS PRIOR TO THIS WORKSHOP.
 IF THEY HAVE NOT ALREADY DONE SO, PARTICIPANTS SHOULD FOLLOW THE INSTRUCTIONS IN 000-ParticpantWorkshopPreparationInstructions.docx
@@ -7,7 +10,7 @@ IF THEY HAVE NOT ALREADY DONE SO, PARTICIPANTS SHOULD FOLLOW THE INSTRUCTIONS IN
 If you have not already done so, install the required dependencies using the following command from spyder or an anaconda prompt: pip install -r requirements.txt
 If pip does not work, first install pip and spyder from the anaconda interface or typing in "conda install pip" and "conda install spyder"
 Python files can be run from an anaconda prompt by typing "python runfile.py" , or can be run by pressing the play button after opening in spyder.
-
+From spyder, you should restart the kernel between runs.
 
 00 An introductory slide.
 
@@ -99,25 +102,18 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    After running MSRESOLVE, compare to the inverse outputs in 03.
    We see that the chemicals are different in final concentrations, but that the conclusions aren't changed in this case.
    In general, the solutions can be affected by the solver, and 'sls' with careful choices should be used when possible.
-   
-   Follow the Section 3.2 of Quickstart -- plotting the data and changing user input settings.
-   #TODO: change to a better data set. Probably use example 1 with some of the settings removed (like baseline correction etc.) so the person needs to do it again?
-   
-   referenceMassFragmentFilterThreshold from 0 to 1.01
-   linearBaselineCorrectionSemiAutomatic to on and put in times
-  
+     
 05 How to do a typical analysis continued:   
     [DELETE 05 DIRECTORY IF IT EXISTS] 
    Make a copy of directory 4. Rename it to 05.
    ctrl + f  for sls, then change the solving for answer choice to 'inverse'.
    Now run MSRESOLVE.
-   If comparing to 04, you will see that for **this** problem, and these settings, the output is now the same.
-     
+   If comparing to 04, you will see that for **this** problem, and these settings, the output should be the same or similar.
+
    
 06 In this example, we will use the concentration finder feature 
     [DELETE 06 DIRECTORY IF IT EXISTS] 
-   Copy directory 05.
-   Change back to sls.
+   Copy directory 05. (solver is inverse)
    UserChoices['concentrationFinder']['on'] = 'no'  #Change this to 'yes'.
    Consider the case that a signal of 1E-7 on m27 is known to be associated with 1 Torr of Ethane.  In this case, we can calibrate the concentrations accordingly.
    Turn the feature on:
@@ -138,33 +134,49 @@ Python files can be run from an anaconda prompt by typing "python runfile.py" , 
    For the molecule we want to add, we can copy the data out of the JDXConverter output and place it in the reference file.
     --> first check the UserInput.py file to find out what the name of the reference file is.
     --> then open that file so that you can add the missing reference pattern.
+    --> You can put in a full spectrum, but for this workshop to be quick, let's just paste in the intensities for masses 27, 29, and 31.
     --> after pasting, you'll see the molecule fragmentation patterns are not even on the same scale. That is fine. MSRESOLVEE will standardize them.
-    --> Because we are using reference uncertainties from file, we need to update that file, too. The uncertainties file is *absolute** uncertainties, so make the uncertainties of the extent desired. 5% of the pattern? Or a fixed amount for all mass fragments?
-   We use 'inverse' for this example, because sls doesn't work well on this example.
+    --> Because we are using reference uncertainties from file, we need to update that file, too. The uncertainties file is *absolute** uncertainties, so make the uncertainties of the extent desired. 5% of the pattern? Or a fixed amount for all mass fragments? You can choose what you would like.
+    We used 'inverse' for this example, because using sls for this example would be less easy. Using sls is usually best, but not always.
    
 08 Tuning correction:
-   In general, different mass spectrometers behave differently. So let's correct the fact that the ethanol was collected in a different spectrometer.
-   ConvertedSpectra1.tsv is from the JDXConverter.
-   This time we intentionally start with **not** having ethanol in our regular file.
-   But we need some common molecules between files, so we open ConvertedSpectra1.tsv and make sure to rename Ethylene, Ethane, and Acetylene to have the same capitalization.
-   MSRESOLVE will *not* recognize the molecules unless the names are exactly the same.
-   Next, in the UserInput, we will change tuningCorrection to yes and 
-   UserChoices['tuningCorrection']['referenceFileStandardTuningAndForm'] = ['ConvertedSpectra1.tsv', 'xyyy']
-   MSRESOLVE will then also use this for the existing tuning.
-
-C:\Users\fvs\Documents\GitHub\MSRESOLVESG\UnitTests\TuningCorrector shows test_4.py:
-MSRESOLVE.G.referencePatternsFileNamesList = ['AcetaldehydeMeasured.tsv']
-MSRESOLVE.G.tuningCorrectPatternInternalVsExternal = 'External'
-MSRESOLVE.G.tuningCorrection = 'yes'
-MSRESOLVE.G.createMixedTuningPattern = True
-MSRESOLVE.G.referenceFileExistingTuningAndForm = ['ReferenceLiterature.tsv','xyyy']
-MSRESOLVE.G.referenceFileDesiredTuningAndForm =['ReferenceCollected.tsv','xyyy']
-
-creates a mixed reference pattern where butanal comes from the    ReferenceLiterature.tsv
-   --> in 08-Typical-Analysis, tried changing the field name to "Source:" from whatever it was.
+   Make a copy of directory 06 and rename it to 08.   
+   For directory 08, we will implement the tuning corrector feature of MSRESOLVE.
+   This feature allows for more accurate solved concentrations when using external reference patterns, as it corrects external fragment patterns for differences between different spectrometers.
+   MSRESOVLE does this by comparing the spectra of some molecules that have been measured on both spectrometers and performing a tuning correction for the unmeasured molecule(s).
    
-   Currently, now see: ExportedReferencePatternExternalTuningCorrected.tsv 
-   and ExportedReferencePatternStandardForCorrectionValuesMixedStandardTuningRearranged.tsv <-- this is strange, because it only has the original 3 molecules and Source:	NIST Webbook	NIST Webbook	NIST Webbook
+   The requirements for such analysis are as follows:
+     UserChoices['inputFiles']['dataToAnalyzeFileName'] -- your measured data to convert to concentrations (as usual)
+     UserChoices['inputFiles']['referencePatternsFileNamesList'] -- your reference file, with molecules measured on your spectrometer (as usual)
+     UserChoices['tuningCorrection']['on'] -- We will need to change this to yes.
+     UserChoices['tuningCorrection']['tuningCorrectPatternInternalVsExternal'] = 'External' #we are going to correct apattern from an external pattern, so we will not change this.
+     UserChoices['tuningCorrection']['referenceFileStandardTuningAndForm'] -- #We will provide NIST patterns to MSRESOLVE as 'standard' tuning. If MSRESOLVE has a standard tuning file provided, that allows for even better tuning correction. 
+     UserChoices['tuningCorrection']['referenceFileExistingTuningAndForm'] =[] #This is the pattern that will be pattern tuning corrected. We are not going to change this line because the standard tuning file will automatically be used for the existing pattern if none is provided.
+     UserChoices['tuningCorrection']['referenceFileDesiredTuningAndForm'] =[] #This is the pattern that will be matched: leave this blank to use your same reference pattern for desired tuning.
+   
+   For this example we are going to include ethanol, again, but this time we are going to include the tuning corrected version.
+   Let's take the following steps to get prepared.
+     (a) Copy ConvertedSpectra1.tsv from the JDXConverter directory and place it in this one.
+     (b) MSRESOLVE capitalization must be exact. Let's check to make sure the capitalization of the molecule names in our referencePatternsFile matches this external pattern, for the molecules that are in both files and will be used for tuning calibration:
+             ConvertedSpectra1                ExtractedReferencePattern
+             ethyne                           Acetylene
+             ethene                           Ethylene
+             ethane                           Ethane
+        We see that the names used and capitaliation are different in ConvertedSpectra1.tsv. Let's change ExtractedReferencePattern to be the best practices naming and capitalization.
+        
+    Now we have everything ready and just need to change our input file according to the requirements noted above!     
+     (1) populate our dataToAnalyzeFileName -- This is already done.
+     (2) populate our referencePatternsFileNamesList -- This is already done
+     (3) UserChoices['tuningCorrection']['on'] -- We will need to change this to yes.
+     (4) UserChoices['tuningCorrection']['tuningCorrectPatternInternalVsExternal'] = 'External' #we are going to correct apattern from an external pattern, so we will not change this.
+     (5) UserChoices['tuningCorrection']['referenceFileStandardTuningAndForm'] = ['ConvertedSpectra1.tsv', 'xyyy'] #Giving the external standard tuning pattenrn.
+     (6) UserChoices['tuningCorrection']['referenceFileExistingTuningAndForm'] =[] #we won't change this because the standard tuning pattern will be used automatically if we leave this blank.
+     (7) UserChoices['tuningCorrection']['referenceFileDesiredTuningAndForm'] =[] #we won't change this because the desired tuning is our internal refernce pattern, and that will be used by default if we leave this blank.
+     (8) We need to do one more thing: ConvertedSpectra1 has many molecules, and we don't want to search for signs of all of them in our data -- that would be unsolvable. So after the tuning correction is done, we need to look for only the four molecules we want to solve for (not all of the molecules from the external patterns).
+        UserChoices['specificMolecules']['on'] = 'yes'
+        UserChoices['specificMolecules']['chosenMoleculesNames'] = ['ethane', 'ethyne', 'ethene', 'ethanol']
 
+    Now run MSRESOLVE by the runfile. 
+    The excel file in the SOLUTIONS directory (EthanolTuningCorrected08VersusUncorrected07.xlsx) shows that the change in the pattern from the tuning correction is small. Accordingly, if we check the scaledConcentrations graph for Ethanol in directory 07 and also in 08, we see that there is not much change. Whether a tuning correction makes a big difference in the concentrations or not is system specific. It should be performed when possible.
    
 After the workshop, attendees may want to go through the "MSRESOLVE_QUICKSTART_AND_EXAMPLE_ANALYSIS" document, which is included with the workshop files.

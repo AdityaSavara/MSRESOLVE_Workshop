@@ -52,7 +52,7 @@ UserChoices['dataSimulation']['on'] = 'no'
 UserChoices['grapher'] = {} #initialize grapher container
 #option allowing you to view a graph of determined concentrations
 UserChoices['grapher']['on'] = 'yes' #yes will graph function no will not
-UserChoices['grapher']['stopAtGraphs'] = True #True will cause stopping at graphs.
+UserChoices['grapher']['stopAtGraphs'] = False #True will cause stopping at graphs.
 
 #//Time Range//
 UserChoices['timeRangeLimit'] = {} #initialize the timeRangeLimit container
@@ -65,8 +65,7 @@ UserChoices['timeRangeLimit']['timeRangeFinish'] = 900	#finish time (-int)
 UserChoices['specificMolecules'] = {} #initialize the specificMolecules container
 #To choose only specific molecules to solve, input in a list of strings  below
 UserChoices['specificMolecules']['on'] = 'yes'
-UserChoices['specificMolecules']['chosenMoleculesNames'] = ['Acetylene', 'Ethylene', 'Ethane', 'ethanol']
-
+UserChoices['specificMolecules']['chosenMoleculesNames'] = ['ethane', 'ethyne', 'ethene', 'ethanol']
 
 #//Chosen Mass Fragments//
 UserChoices['specificMassFragments'] = {} #initialize the specificMassFragments container
@@ -190,8 +189,8 @@ UserChoices['extractReferencePatternFromDataOption']['rpcMoleculesToChangeMF'] =
 UserChoices['applyReferenceMassFragmentsThresholds'] = {} #initialize the applyReferenceMassFragmentsThresholds container
 # if you want to exclude tiny fragmentation peaks
 UserChoices['applyReferenceMassFragmentsThresholds']['on'] = 'yes'
-UserChoices['applyReferenceMassFragmentsThresholds']['referenceMassFragmentFilterThreshold'] = [10.2]
-UserChoices['applyReferenceMassFragmentsThresholds']['referenceSignificantFragmentThresholds'] = [10.0]
+UserChoices['applyReferenceMassFragmentsThresholds']['referenceMassFragmentFilterThreshold'] = [1.2]
+UserChoices['applyReferenceMassFragmentsThresholds']['referenceSignificantFragmentThresholds'] = [20.0]
 
 #//Data Threshold Filter//
 UserChoices['lowerBoundThresholdChooser'] = {} #initialize the lowerBoundThresholdChooser container
@@ -269,12 +268,12 @@ UserChoices['concentrationFinder'] = {} #initialize the concentrationFinder cont
 #this last set of inputs is where you enter your conversion factors from raw signal to concentration, unlike most rows, do not leave brackets around chosen numbers
 #here you put in a known raw signal intensity and the known concentration it corresponds to. 
 #TODO Note: Concentration Finder is not compatible with simultaneous use of multiple reference files AND separate molecules' factors as of 181022. Currently, it a user may use either one or the other.
-UserChoices['concentrationFinder']['on'] = 'no'
+UserChoices['concentrationFinder']['on'] = 'yes'
 UserChoices['concentrationFinder']['TSC_List_Type'] = 'MultipleReferencePatterns' #Options are 'MultipleReferencePatterns' or 'SeparateMolecularFactors'
-UserChoices['concentrationFinder']['moleculesTSC_List'] = ['Acetaldehyde'] #Default concentration factors will be calculated for each molecule to match the first moleculeTSC input
-UserChoices['concentrationFinder']['massNumberTSC_List'] = [29]
-UserChoices['concentrationFinder']['moleculeSignalTSC_List'] = [1.66945] #This is the list of intensity values that correspond to a known concentration to scale with for the same mass fragments
-UserChoices['concentrationFinder']['moleculeConcentrationTSC_List'] = [0.05]	#this is the concentration/pressure associated with the signal.
+UserChoices['concentrationFinder']['moleculesTSC_List'] = ['Ethane'] #Default concentration factors will be calculated for each molecule to match the first moleculeTSC input
+UserChoices['concentrationFinder']['massNumberTSC_List'] = [27]
+UserChoices['concentrationFinder']['moleculeSignalTSC_List'] = [1.0e-7] #This is the list of intensity values that correspond to a known concentration to scale with for the same mass fragments
+UserChoices['concentrationFinder']['moleculeConcentrationTSC_List'] = [1.0]	#this is the concentration/pressure associated with the signal.
 UserChoices['concentrationFinder']['unitsTSC'] = 'bar'	#this string is the unit for the concentration. The unit will not be used in calculations so any units may be used
 
 #//Output Files//

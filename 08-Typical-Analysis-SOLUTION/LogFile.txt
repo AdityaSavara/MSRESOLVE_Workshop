@@ -1,24 +1,24 @@
-Sun Aug  7 20:49:09 2022
+Sun Aug  7 20:48:45 2022
 
-referenceFileName = ['ExtractedReferencePattern.tsv'] 
+referenceFileName = ['ExtractedReferencePattern.csv'] 
 form  = ['xyyy'] 
 dataToAnalyzeFileName = Collected_GasPulse.csv 
-tuningCorrection = yes 
-referenceCorrectionCoefficientA = -0.003397259630902127 
-referenceCorrectionCoefficientB = 0.13209962034560493 
-referenceCorrectionCoefficientC = -0.05927216426089867 
-referenceCorrection_abcCoefficients = [-0.003397259630902127, 0.13209962034560493, -0.05927216426089867] 
-referenceCorrection_abcCoefficients_cov = [[0.00011624265622234098, -0.006393346092228815, 0.08756946768749861], [-0.006393346092228804, 0.3518820194058606, -4.8231402919774675], [0.08756946768749825, -4.823140291977458, 66.15726043092641]] 
-specificMolecules = yes 
-chosenMoleculesNames = ['Acetylene', 'Ethylene', 'Ethane', 'ethanol'] 
 applyReferenceMassFragmentsThresholds = yes 
-referenceMassFragmentFilterThreshold = [10.2, 10.2, 10.2, 10.2] 
-referenceSignificantFragmentThresholds = [10.0, 10.0, 10.0, 10.0] 
-solverChoice = inverse 
-distinguished = yes 
+referenceMassFragmentFilterThreshold = [1.2, 1.2, 1.2] 
+referenceSignificantFragmentThresholds = [20.0, 20.0, 20.0] 
+solverChoice = sls 
+uniqueOrCommon = unique 
+slsFinish = brute 
+objectiveFunctionType = ssr 
+concentrationFinder = yes 
+molecule = ['Ethane'] 
+moleculeSignal = [1e-07] 
+massNumber = [27] 
+moleculeConcentration = [1.0] 
+units = bar 
 scaleRawDataFactor  = 1.0 
 resolvedScaledConcentrationsOutputName  = ScaledConcentrations.tsv 
 concentrationsOutputName = ResolvedConcentrations.tsv 
 simulatedSignalsOutputName = SimulatedRawSignals.csv 
-Run Time 10.83372 seconds 
+Run Time 5.21258 seconds 
 ###################################################################### 

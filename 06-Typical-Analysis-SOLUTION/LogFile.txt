@@ -1,4 +1,4 @@
-Sun Aug  7 20:48:45 2022
+Wed Aug 17 11:19:39 2022
 
 referenceFileName = ['ExtractedReferencePattern.csv'] 
 form  = ['xyyy'] 
@@ -6,10 +6,8 @@ dataToAnalyzeFileName = Collected_GasPulse.csv
 applyReferenceMassFragmentsThresholds = yes 
 referenceMassFragmentFilterThreshold = [1.2, 1.2, 1.2] 
 referenceSignificantFragmentThresholds = [20.0, 20.0, 20.0] 
-solverChoice = sls 
-uniqueOrCommon = unique 
-slsFinish = brute 
-objectiveFunctionType = ssr 
+solverChoice = inverse 
+distinguished = yes 
 concentrationFinder = yes 
 molecule = ['Ethane'] 
 moleculeSignal = [1e-07] 
@@ -20,5 +18,5 @@ scaleRawDataFactor  = 1.0
 resolvedScaledConcentrationsOutputName  = ScaledConcentrations.tsv 
 concentrationsOutputName = ResolvedConcentrations.tsv 
 simulatedSignalsOutputName = SimulatedRawSignals.csv 
-Run Time 5.21258 seconds 
+Run Time 3.80082 seconds 
 ###################################################################### 

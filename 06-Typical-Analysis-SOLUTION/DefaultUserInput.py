@@ -52,7 +52,7 @@ UserChoices['dataSimulation']['on'] = 'yes'
 UserChoices['grapher'] = {} #initialize grapher container
 #option allowing you to view a graph of determined concentrations
 UserChoices['grapher']['on'] = 'yes' #yes will graph function no will not
-UserChoices['grapher']['stopAtGraphs'] = True #True will cause stopping at graphs.
+UserChoices['grapher']['stopAtGraphs'] = False #True will cause stopping at graphs.
 
 #//Time Range//
 UserChoices['timeRangeLimit'] = {} #initialize the timeRangeLimit container

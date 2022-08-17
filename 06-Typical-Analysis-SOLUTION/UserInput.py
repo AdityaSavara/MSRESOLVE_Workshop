@@ -52,7 +52,7 @@ UserChoices['dataSimulation']['on'] = 'no'
 UserChoices['grapher'] = {} #initialize grapher container
 #option allowing you to view a graph of determined concentrations
 UserChoices['grapher']['on'] = 'yes' #yes will graph function no will not
-UserChoices['grapher']['stopAtGraphs'] = True #True will cause stopping at graphs.
+UserChoices['grapher']['stopAtGraphs'] = False #True will cause stopping at graphs.
 
 #//Time Range//
 UserChoices['timeRangeLimit'] = {} #initialize the timeRangeLimit container
@@ -250,7 +250,7 @@ UserChoices['negativeAnalyzerYorN']['NegativeAnalyzerBaseNumberOfGridIntervals']
 #//Data Analysis Methods
 UserChoices['dataAnalysisMethods'] = {} #initialize the dataAnalysisMethods container
 #Below the path for the analysis of the data; sls or inverse
-UserChoices['dataAnalysisMethods']['solverChoice'] = 'sls'	#'inverse' or 'sls'; sls is suggested
+UserChoices['dataAnalysisMethods']['solverChoice'] = 'inverse'	#'inverse' or 'sls'; sls is suggested
 UserChoices['dataAnalysisMethods']['uniqueOrCommon'] = 'unique'	#'unique' or 'common'; unique is suggested when uncertainties will be used.
 UserChoices['dataAnalysisMethods']['slsWeighting'] = [1,1,1,1] #The first uses uncertainties weighting. The second solves for largest concentrations first. The third uses reference peak height. The fourth uses the signal intensity.  All can be on at the same time. 
 UserChoices['dataAnalysisMethods']['slsFinish'] = 'brute'	#'brute' or 'inverse'; inverse is currently suggested if using the uncertainties feature.
