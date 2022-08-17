@@ -70,6 +70,9 @@ From spyder, you should restart the kernel between runs.
    UserChoices['linearBaselineCorrectionSemiAutomatic']['lateBaselineTimes'] =  ___
    Note: This is similar to section 3.2 of the quick start guide.
    
+   Let's also turn on ExportAtEachStep, which is normal to use.
+   UserChoices['ExportAtEachStep']['on'] = 'yes'
+   
 04 How to do a typical analysis continued:
   [DELETE 04 DIRECTORY IF IT EXISTS] 
    Copy Directory 3 and paste it. Then rename the new directory to start with "04"
