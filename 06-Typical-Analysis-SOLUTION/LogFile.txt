@@ -1,4 +1,4 @@
-Wed Aug 17 12:42:00 2022
+Sat Aug 20 08:54:41 2022
 
 referenceFileName = ['ExtractedReferencePattern.tsv'] 
 form  = ['xyyy'] 
@@ -9,7 +9,7 @@ referenceSignificantFragmentThresholds = [20.0, 20.0, 20.0]
 solverChoice = inverse 
 distinguished = yes 
 concentrationFinder = yes 
-molecule = ['Ethane'] 
+molecule = ['ethane'] 
 moleculeSignal = [1e-07] 
 massNumber = [27] 
 moleculeConcentration = [1.0] 
@@ -18,5 +18,5 @@ scaleRawDataFactor  = 1.0
 resolvedScaledConcentrationsOutputName  = ScaledConcentrations.tsv 
 concentrationsOutputName = ResolvedConcentrations.tsv 
 simulatedSignalsOutputName = SimulatedRawSignals.csv 
-Run Time 3.91872 seconds 
+Run Time 3.67554 seconds 
 ###################################################################### 
