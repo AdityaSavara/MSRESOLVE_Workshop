@@ -174,7 +174,7 @@ UserChoices['tuningCorrection']['referenceCorrectionCoefficients_cov'] = [0,0,0]
 UserChoices['extractReferencePatternFromDataOption'] = {} #initialize the extractReferencePatternFromDataOption container
 #To change reference data based on collected data at a certain time, enter mass fragments for the molecule and times below
 UserChoices['extractReferencePatternFromDataOption']['on'] = 'no'
-UserChoices['extractReferencePatternFromDataOption']['rpcMoleculesToChange'] = ['Ethane'] #Acetylene	Ethylene	Ethane
+UserChoices['extractReferencePatternFromDataOption']['rpcMoleculesToChange'] = ['ethane'] #Acetylene	Ethylene	Ethane
 #rpcTimeRanges and rpcMoleculesToChangeMF are nested lists.  Each nested list corresponds to a molecule in rpcMoleculesToChange
 #To make this easier to visualize, each nested list is placed on its own line so the first line refers to the first molecule, second line refers to the second molecule and so on
 UserChoices['extractReferencePatternFromDataOption']['rpcTimeRanges'] = [
