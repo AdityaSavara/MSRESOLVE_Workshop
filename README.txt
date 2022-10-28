@@ -22,7 +22,7 @@ From spyder, you should restart the kernel between runs.
     ScaledConcentrations.tsv  and the graphs directory are the main outputs.  Section 2.3 of the Quickstart explains what the various files are.
     Right click on ScaledConcentrations.tsv, click on properties, and click "change" to change the default program for opening the tsv to be excel. Note: you may need to find out where excel is on your computer.
     TSV files can also be dragged into excel when excel is already open.
-    As noted in Section 3.1 of the Quickstart document, for this analysis there is no 'detectable' Ethene or Ethyne (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
+    As noted in Section 3.1 of the Quickstart document, for this analysis if we look at the error bars ('uncertainties') there is no 'detectable' Ethene or Ethyne (those are 'within error'). There is only Ethane. The abilty to have error bars are an important feature of MSRESOLVE
 
 02 Creating a reference pattern file.
    This section is OPTIONAL for MSRESOLVE, but is useful, as it describes how to retrieve reference patterns from online by use of JDXConverter (another program).
@@ -121,9 +121,10 @@ From spyder, you should restart the kernel between runs.
    Consider the case that a signal of 1E-7 on m27 is known to be associated with 1 Torr of Ethane.  In this case, we can calibrate the concentrations accordingly.
    Turn the feature on:
    UserChoices['concentrationFinder']['on'] = 'yes'
+   UserChoices['concentrationFinder']['moleculesTSC_List'] = ['ethane']
    ['massNumberTSC_List'] = [27]
-   ['moleculeSignalTSC_List'] = [1.0e-7]
-   ['moleculeConcentrationTSC_List'] = 1
+   ['moleculeSignalTSC_List'] = [1.0e-7] #intensity
+   ['moleculeConcentrationTSC_List'] = 1.4 #bar
    Now run MSRESOLVE.
    
    The graphs that come out now include resolvedConcentrations. These are the same graphs as before, it's just the units that are different.
